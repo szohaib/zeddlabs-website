@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeddlabs Career Roadmap &amp; Mentorship</title>
+    <meta name="description" content="Live 1-hour career roadmap sessions, resume reviews and mock interviews, covering DSA, system design, global business knowledge and industry insights.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --night: #0f172a;
+            --panel: #1e293b;
+            --rule: rgba(255, 255, 255, 0.1);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --tech: #818cf8;
+            --biz: #22d3ee;
+            --ins: #34d399;
+            --accent: #22d3ee;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--night);
+            color: var(--text);
+            font: 400 1.125rem/1.6 'Overpass', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+        .wrap { max-width: 70rem; margin: 0 auto; padding: 0 1.25rem; }
+        h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
+        h2 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.1; margin-bottom: 1rem; }
+        h3 { font-size: 1.3125rem; line-height: 1.25; }
+        p { max-width: 36em; }
+        .muted { color: var(--muted); }
+        section { padding: 6rem 0; scroll-margin-top: 4rem; }
+        .lede { color: var(--muted); font-size: 1.25rem; margin-bottom: 3.5rem; }
+
+        /* Buttons */
+        .btn {
+            display: inline-block; text-decoration: none; font-weight: 800;
+            background: var(--text); color: var(--night);
+            padding: 0.95rem 1.6rem; border-radius: 999px; border: 0; cursor: pointer;
+            font: inherit; font-weight: 800; transition: background 0.2s;
+        }
+        .btn:hover { background: #fff; }
+        .btn-grad { background: linear-gradient(90deg, #6366f1, #06b6d4); color: #fff; transition: box-shadow 0.2s; }
+        .btn-grad:hover { background: linear-gradient(90deg, #6366f1, #06b6d4); box-shadow: 0 10px 30px -8px rgba(99, 102, 241, 0.5); }
+        .link { font-weight: 600; color: var(--accent); text-underline-offset: 4px; }
+
+        /* Nav */
+        nav { position: sticky; top: 0; z-index: 10; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
+        nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 4rem; gap: 1.5rem; }
+        .brand { text-decoration: none; display: flex; align-items: baseline; gap: 0.75rem; }
+        .brand b {
+            font-size: 1.5rem; font-weight: 800;
+            background: linear-gradient(90deg, #818cf8, #22d3ee); -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .brand span { color: var(--muted); font-size: 0.875rem; }
+        .navlinks { display: flex; align-items: center; gap: 1.75rem; font-size: 0.9375rem; }
+        .navlinks a:not(.btn) { text-decoration: none; color: var(--muted); }
+        .navlinks a:not(.btn):hover { color: var(--text); }
+        .navlinks .btn { padding: 0.55rem 1.1rem; font-size: 0.9375rem; }
+        @media (max-width: 860px) { .navlinks a:not(.btn), .brand span { display: none; } }
+
+        /* Hero */
+        .hero { padding: 5rem 0 6rem; background: radial-gradient(ellipse 60% 80% at 10% 20%, rgba(99, 102, 241, 0.28), transparent 70%), #0e182e; } /* base matches the hero image background */
+        .hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .hero h1 { font-size: clamp(2.75rem, 6.5vw, 4.75rem); line-height: 1.02; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.25rem; color: var(--muted); margin-bottom: 1.25rem; }
+        .hero .status { font-size: 1rem; color: var(--text); margin-bottom: 2.25rem; display: flex; align-items: center; gap: 0.6rem; }
+        .hero .status::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: #4ade80; flex: none; }
+        .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; }
+        .art {
+            width: 118%; max-width: 680px; height: auto; justify-self: center; margin: -2rem -6% -2rem 0;
+            /* Fade the image's own navy edges into the hero gradient */
+            -webkit-mask-image: radial-gradient(ellipse 70% 70% at 55% 55%, #000 55%, transparent 100%);
+            mask-image: radial-gradient(ellipse 70% 70% at 55% 55%, #000 55%, transparent 100%);
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            .art { opacity: 0; transform: translateY(16px); animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s forwards; }
+            @keyframes rise { to { opacity: 1; transform: none; } }
+        }
+        @media (max-width: 860px) {
+            .hero { padding-top: 3rem; }
+            .hero .wrap { grid-template-columns: 1fr; }
+            .art { width: 100%; margin: 0; }
+        }
+
+        /* Sessions */
+        .alt { background: #131c2f; } /* slate-800/30 over slate-900, as on the homepage */
+        .sessions { list-style: none; border-top: 1px solid var(--rule); }
+        .sessions li { display: grid; grid-template-columns: 16rem 1fr 1fr; gap: 1rem 2.5rem; padding: 2rem 0; border-bottom: 1px solid var(--rule); }
+        .sessions .dur { display: block; color: var(--muted); font-size: 0.9375rem; margin-top: 0.3rem; font-weight: 400; }
+        .sessions p { color: var(--muted); }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+        .tag { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.875rem; padding: 0.2rem 0.75rem; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 999px; }
+        .tag::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+        .sessions .get { color: var(--text); }
+        .sessions .get b { display: block; font-size: 0.9375rem; color: var(--muted); font-weight: 600; margin-bottom: 0.2rem; }
+        @media (max-width: 760px) { .sessions li { grid-template-columns: 1fr; } }
+        .note { margin-top: 2rem; color: var(--muted); font-size: 1rem; }
+
+        /* Steps */
+        .steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; counter-reset: step; }
+        .steps li { counter-increment: step; border-top: 4px solid var(--rule); padding-top: 1.5rem; position: relative; }
+        .steps li::before {
+            content: counter(step); position: absolute; top: -1.25rem; left: 0;
+            width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--night); border: 4px solid var(--text);
+            display: grid; place-items: center; font-weight: 800; font-size: 0.9375rem;
+        }
+        .alt .steps li::before { background: #131c2f; }
+        .steps h3 { margin: 0.75rem 0 0.5rem; }
+        .steps p { color: var(--muted); font-size: 1rem; }
+        @media (max-width: 760px) {
+            .steps { grid-template-columns: 1fr; gap: 0; }
+            .steps li { border-top: 0; border-left: 4px solid var(--rule); padding: 0 0 2rem 2rem; }
+            .steps li::before { top: 0; left: -1.25rem; }
+            .steps h3 { margin-top: 0.2rem; }
+        }
+
+        /* FAQ */
+        .faq { max-width: 46rem; }
+        details { border-bottom: 1px solid var(--rule); }
+        summary { list-style: none; cursor: pointer; padding: 1.4rem 0; font-weight: 600; font-size: 1.1875rem; display: flex; justify-content: space-between; gap: 1rem; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; color: var(--accent); font-size: 1.5rem; line-height: 1; transition: transform 0.2s; }
+        details[open] summary::after { transform: rotate(45deg); }
+        details p { color: var(--muted); padding-bottom: 1.5rem; }
+
+        /* Form */
+        .apply .wrap { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 3rem 4rem; align-items: start; }
+        @media (max-width: 860px) { .apply .wrap { grid-template-columns: 1fr; } }
+        form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+        form .full { grid-column: 1 / -1; }
+        @media (max-width: 600px) { form { grid-template-columns: 1fr; } }
+        label { display: block; font-size: 0.9375rem; font-weight: 600; }
+        input, select, textarea {
+            display: block; width: 100%; margin-top: 0.45rem; padding: 0.8rem 1rem;
+            background: var(--panel); color: var(--text); border: 1px solid var(--rule); border-radius: 10px;
+            font: inherit; font-size: 1rem;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+        input:focus-visible, select:focus-visible, textarea:focus-visible { outline: none; }
+        textarea { resize: vertical; }
+        .consent { display: flex; gap: 0.75rem; align-items: flex-start; font-weight: 400; color: var(--muted); }
+        .consent input { width: auto; margin-top: 0.3rem; accent-color: var(--accent); }
+        .hp { position: absolute; left: -9999px; }
+
+        footer { border-top: 1px solid var(--rule); padding: 2.5rem 0; font-size: 0.9375rem; color: var(--muted); }
+        footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="wrap">
+            <a href="/" class="brand"><b>Zeddlabs</b><span>Career Roadmap &amp; Mentorship</span></a>
+            <div class="navlinks">
+                <a href="#cover">What we cover</a>
+                <a href="#how">How it works</a>
+                <a href="#faq">FAQ</a>
+                <a href="#apply" class="btn btn-grad">Apply</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="wrap">
+            <div>
+                <h1>Plan the route to your next tech role.</h1>
+                <p>Zeddlabs Career Roadmap &amp; Mentorship pairs you with people working at leading global tech companies. In live 1-hour sessions with our experts, you get a personal roadmap, a stronger resume and real interview practice.</p>
+                <div class="status">Limited seats available.</div>
+                <div class="actions">
+                    <a href="#apply" class="btn">Apply now</a>
+                    <a href="#cover" class="link">See what we cover</a>
+                </div>
+            </div>
+
+            <img class="art" src="/mentorship/mentorship-climb.jpg" width="1448" height="1086"
+                 alt="A mentor at the top of a staircase reaches down to help a young professional climb toward a green flag.">
+        </div>
+    </header>
+
+    <section id="cover" class="alt">
+        <div class="wrap">
+            <h2>What we cover</h2>
+            <p class="lede">Live 1-hour sessions with our experts, each focused on what matters for your next step. Book the one you need.</p>
+            <ol class="sessions">
+                <li>
+                    <h3>Career roadmap session<span class="dur">1 hour, live</span></h3>
+                    <div>
+                        <p>Where you are, where you want to go, and what the industry expects today: in-demand roles and skills, how global companies work, and how business priorities shape tech careers.</p>
+                        <div class="tags"><span class="tag" style="--c: var(--ins)">Industry insights</span><span class="tag" style="--c: var(--biz)">Global business &amp; administration</span></div>
+                    </div>
+                    <p class="get"><b>You leave with</b>A clear picture of your next steps toward your target role.</p>
+                </li>
+                <li>
+                    <h3>Resume review<span class="dur">1 hour, live</span></h3>
+                    <div>
+                        <p>We go through your resume line by line, the way a recruiter or hiring manager reads it, and show you what to change.</p>
+                        <div class="tags"><span class="tag" style="--c: var(--ins)">Industry insights</span></div>
+                    </div>
+                    <p class="get"><b>You leave with</b>An ATS-ready resume that shows your impact.</p>
+                </li>
+                <li>
+                    <h3>Mock interview<span class="dur">1 hour, live</span></h3>
+                    <div>
+                        <p>A real-format technical or behavioural interview with one of our experts, testing how you break down problems and design solutions.</p>
+                        <div class="tags"><span class="tag" style="--c: var(--tech)">DSA, system design &amp; problem solving</span></div>
+                    </div>
+                    <p class="get"><b>You leave with</b>An honest scorecard and a short list of what to fix first.</p>
+                </li>
+            </ol>
+            <p class="note">Pricing is shared after you submit your application.</p>
+        </div>
+    </section>
+
+    <section id="how">
+        <div class="wrap">
+            <h2>How it works</h2>
+            <p class="lede">From application to your first session in about a week.</p>
+            <ol class="steps">
+                <li><h3>Apply</h3><p>Tell us your goal and where you are today. It takes about two minutes.</p></li>
+                <li><h3>Hear from us</h3><p>Within 48 hours we message you on WhatsApp or email with pricing and available slots.</p></li>
+                <li><h3>Meet your mentor</h3><p>Join a live 1-hour video call at a time we agree together.</p></li>
+                <li><h3>Follow your plan</h3><p>Leave with written next steps, and book your next session when you're ready.</p></li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="faq" class="alt">
+        <div class="wrap"><div class="faq">
+            <h2>Questions</h2>
+            <details>
+                <summary>Who is this for?</summary>
+                <p>College students, especially in pre-final and final year, freshers looking for their first role, and working professionals who want to grow or switch roles in tech.</p>
+            </details>
+            <details>
+                <summary>How much does it cost?</summary>
+                <p>Pricing is shared after you submit your application.</p>
+            </details>
+            <details>
+                <summary>Do you guarantee a job or a referral?</summary>
+                <p>No, and be careful of anyone who does. We give you a clear roadmap, honest feedback and real interview practice. The offer is yours to earn.</p>
+            </details>
+        </div></div>
+    </section>
+
+    <section id="apply" class="apply">
+        <div class="wrap">
+            <div>
+                <h2>Apply now</h2>
+                <p class="muted">Limited seats available, as every session is one-to-one. We reply within 48 hours on WhatsApp or email, and share pricing once your application is in.</p>
+            </div>
+            <form name="mentorship-application" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="company-website">
+                <input type="hidden" name="form-name" value="mentorship-application">
+                <label class="hp" aria-hidden="true">Leave this empty <input name="company-website" tabindex="-1" autocomplete="off"></label>
+
+                <label>Full name
+                    <input type="text" name="name" required autocomplete="name">
+                </label>
+                <label>Email
+                    <input type="email" name="email" required autocomplete="email">
+                </label>
+                <label>WhatsApp number
+                    <input type="tel" name="whatsapp" required autocomplete="tel" placeholder="+91 98765 43210" pattern="[0-9+\s\-]{8,16}" title="Use digits, spaces, + or -">
+                </label>
+                <label>I am a
+                    <select name="profile" required>
+                        <option value="" disabled selected>Choose one</option>
+                        <option>Student</option>
+                        <option>Fresher looking for a first role</option>
+                        <option>Working professional</option>
+                    </select>
+                </label>
+                <label>College or company <span class="muted">(optional)</span>
+                    <input type="text" name="organisation" autocomplete="organization">
+                </label>
+                <label>Year or experience <span class="muted">(optional)</span>
+                    <input type="text" name="experience" placeholder="3rd year, or 2 years">
+                </label>
+                <label>What do you want help with?
+                    <select name="focus" required>
+                        <option value="" disabled selected>Choose an area</option>
+                        <option>DSA, system design &amp; problem solving</option>
+                        <option>Global business &amp; administration</option>
+                        <option>Industry insights &amp; career direction</option>
+                        <option>All of these</option>
+                    </select>
+                </label>
+                <label>Session you want
+                    <select name="offering" required>
+                        <option value="" disabled selected>Choose a session</option>
+                        <option>Career roadmap session</option>
+                        <option>Resume review</option>
+                        <option>Mock interview</option>
+                        <option>Not sure yet, help me choose</option>
+                    </select>
+                </label>
+                <label class="full">What do you want to achieve in the next six months? <span class="muted">(optional)</span>
+                    <textarea name="goal" rows="3" placeholder="For example: land a software engineering role at a product company"></textarea>
+                </label>
+                <label class="consent full">
+                    <input type="checkbox" name="consent" value="yes" required>
+                    Zeddlabs can contact me on WhatsApp or email about this application.
+                </label>
+                <div class="full"><button type="submit" class="btn btn-grad">Send application</button></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <span>© 2026 Zeddlabs. <a href="mailto:zeddlabs@gmail.com">zeddlabs@gmail.com</a></span>
+            <a href="/">Zeddlabs AI agent services</a>
+        </div>
+    </footer>
+</body>
+</html>
